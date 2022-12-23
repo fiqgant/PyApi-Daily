@@ -1,13 +1,12 @@
-import os
-from random import randint
+import requests
 
-for i in range(1, 1092):
-    for j in range(0, randint(1, 10)):
-        d = str(i) + ' days ago'
-        with open('file.txt', 'a') as file:
-            file.write(d)
-        os.system('git add .')
-        os.system('git commit --date="' + d + '" -m "commit"')
+# Make a GET request to the API
+response = requests.get('https://api.example.com/endpoint')
 
-os.system('git push -u origin main')
-
+# Check the status code of the response
+if response.status_code == 200:
+  # Print the response data
+  print(response.json())
+else:
+  # Print an error message
+  print('An error occurred: {}'.format(response.status_code))
